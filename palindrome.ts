@@ -1,21 +1,25 @@
-function palindrome(str :string) :boolean {
+/*
+    Need to come back and fix type errors after I understand more of TypeScript.
+
+    The JavaScript code in its current state passes the tests for the assignment.
+*/
+
+function palindrome(str: string) : boolean {
     const myRegex = /[a-zA-Z0-9]/g;
-    let result :string[]; // I need to remove this after I figure out the properly ensure result is assigned a string. Error: 'null' is not assignable to type 'string[]'.
-    let flipped : string[]; // Also need to remove the | undefined for the reason as above.
-    // I need to look up TypeScript best practices.
-    const matched = str.match(myRegex);
-    console.log(matched);
-    /*
-        Didn't know the ? before a method is called 'optional chaining'
-    */
+    const matched = str.toLowerCase().match(myRegex);
+    const matchedStr = matched?.join('');
+    const reversedStr = [...matched].reverse().join(''); // Type error 'RegExpMatchArray | null', need to fix once I've learnt how
 
-    result = str.toLowerCase().match(myRegex);
-    flipped = [...result];
+    console.log(matchedStr);
+    console.log(reversedStr);
 
-    //console.log(result);
-    //console.log(flipped);
-
-    return true;
+    if (reversedStr === matchedStr) {
+        console.log("true");
+        return true;
+    } else {
+        console.log("false");
+        return false;
+    }
 }
   
 //palindrome("eye");  

@@ -1,3 +1,8 @@
+/*
+    Need to come back and fix type errors after I understand more of TypeScript.
+
+    The JavaScript code in its current state passes the tests for the assignment.
+*/
 var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
         if (ar || !(i in from)) {
@@ -9,19 +14,19 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 };
 function palindrome(str) {
     var myRegex = /[a-zA-Z0-9]/g;
-    var result; // I need to remove this after I figure out the properly ensure result is assigned a string. Error: 'null' is not assignable to type 'string[]'.
-    var flipped; // Also need to remove the | undefined for the reason as above.
-    // I need to look up TypeScript best practices.
-    var matched = str.match(myRegex);
-    console.log(matched);
-    /*
-        Didn't know the ? before a method is called 'optional chaining'
-    */
-    result = str.toLowerCase().match(myRegex);
-    flipped = __spreadArray([], result, true);
-    //console.log(result);
-    //console.log(flipped);
-    return true;
+    var matched = str.toLowerCase().match(myRegex);
+    var matchedStr = matched === null || matched === void 0 ? void 0 : matched.join('');
+    var reversedStr = __spreadArray([], matched, true).reverse().join(''); // Type error 'RegExpMatchArray | null', need to fix once I've learnt how
+    console.log(matchedStr);
+    console.log(reversedStr);
+    if (reversedStr === matchedStr) {
+        console.log("true");
+        return true;
+    }
+    else {
+        console.log("false");
+        return false;
+    }
 }
 //palindrome("eye");  
 palindrome("_eye");
